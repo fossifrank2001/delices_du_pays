@@ -1,0 +1,117 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Doc Test",
+        "description": "Here's a little test of my API Documentation using Swagger",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/roles": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Display a listing of the resource.",
+                "operationId": "ListRole",
+                "parameters": [
+                    {
+                        "name": "Page",
+                        "in": "path",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful listed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": "Roles successfully listed"
+                                        },
+                                        "roles": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Role"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Image": {
+                "title": "Image Model",
+                "description": "Model handling  image of a resource",
+                "properties": {
+                    "IMG_ID_IMAGE": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "IMG_PATH": {
+                        "type": "string"
+                    },
+                    "IMAGEABLE_type": {
+                        "type": "string"
+                    },
+                    "IMAGEABLE_id": {
+                        "type": "interger",
+                        "format": "int64"
+                    }
+                },
+                "type": "object"
+            },
+            "Role": {
+                "title": "Role Model",
+                "description": "Model for the Role of an User",
+                "properties": {
+                    "ROL_ID_ROLE": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "ROL_LIBELLE": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Statut": {
+                "title": "Statut Model",
+                "description": "Represents the User's statut",
+                "properties": {
+                    "STA_ID_STATUT": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "STA_LIBELLE": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "Basic": {
+                "type": "apiKey",
+                "description": "Enter token in format (Basic <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
